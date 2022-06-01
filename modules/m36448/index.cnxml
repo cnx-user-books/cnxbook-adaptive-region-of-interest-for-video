@@ -1,0 +1,45 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Determining the ROI</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36448</md:content-id>
+  <md:title>Determining the ROI</md:title>
+  <md:abstract/>
+  <md:uuid>9a32bc14-291f-4107-9637-094283c9fd4b</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1163936632278">
+      <title>Incorporating Motion, Edge, and Focus Detection</title>
+      <para id="id1163929801695">In order to determine the ROI for each frame of a movie, we need to be able to incorporate the results of motion, edge, and focus detection into a single system. The way we accomplish this is by analyzing each frame in five separate sections. </para>
+      <section id="id1163951484578">
+        <title>Frame Region Analysis</title>
+        <para id="id1163929627017">For motion and edge detection, the entire frame is processed at once, and then the resulting matrix is broken into 5 regions as below:</para>
+        <figure id="id1163932456943">
+          <title>The 5 analysis regions for motion and edge detection</title>
+          <media id="id1163932456943_media" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics1.jpg" id="id1163932456943__onlineimage" height="334" width="599"/>
+          </media>
+          <caption>Scene from “Punch Drunk Love”</caption>
+        </figure>
+        <para id="id1163950833566"><emphasis>For motion detection</emphasis>, recall that the processing results in a “difference” matrix after subtracting two frames. The mean of the difference values is taken for each region and divided by the mean of the difference values for the whole frame. These region means are then normalized by the one with the largest magnitude. The result is a number between 0 and 1 for each region, with a value of 1 indicating the region of maximum relative change and 0 indicating no change.</para>
+        <para id="id1163929815383"><emphasis>For edge detection</emphasis>, recall that the processing results in an edge matrix, where a value of 1 means that that pixel is part of an edge and a value of zero indicates that the pixel is not part of an edge. Thus the sum of the pixels in each region is found and normalized to the region with the highest sum. The result is a value between 0 and 1 for each region, with 1 indicating the region with the most edges and 0 indicating a region with no edges.</para>
+        <para id="id1163931554487"><emphasis>For focus detection</emphasis>, recall that the processing results in a value for the slope of the linear regression of the loglog plot of the power spectrum. Due to the requirement of a square matrix for the 2D Fourier transform, the frame is divided into 5 semi-overlapped square regions:</para>
+        <figure id="id1163951905916">
+          <title>The 5 analysis regions for focus detection</title>
+          <media id="id1163951905916_media" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics2.jpg" id="id1163951905916__onlineimage" height="334" width="599"/>
+          </media>
+          <caption>Scene from “Punch Drunk Love”</caption>
+        </figure>
+        <para id="id1163932648530">The focus detection processing is performed on each of these regions, and then the most in-focus region is identified (by its falloff rate), and the remaining regions are assigned a normalized value corresponding to how close they come to having the best focus value. The result is a value between 0 and 1 for each region, with 1 indicating the region of best focus and 0 indicating the region of worst focus. </para>
+      </section>
+      <section id="id1163944624790">
+        <title>Assigning the ROI</title>
+        <para id="id1163928520551">After converting the results of motion, edge, and focus detection into values between 0 and 1 for each region, the values are averaged for each region. This gives one value for each region, with higher values indicating that there are more elements of interest in that region. </para>
+        <para id="id1163956536493">To translate this into an ROI, a horizontal midpoint is defined within the widescreen frame, and each region’s interest value is mapped to a weighted deviation from this midpoint. The net deviation from midpoint is then found by summing these deviations, and the fullscreen ROI midpoint is defined to be at this deviation from widescreen center.</para>
+        <para id="id1163950535990">Thus, interest in regions 1 and 2 act to pull the fullscreen ROI to the left, while interest in regions 4 and 5 acts to pull the fullscreen ROI to the right, and activity in region 3 acts to maintain the fullscreen ROI at the center.</para>
+        <para id="id1163952691830">The final midpoint value is filtered with a moving average (half-width = 30, or approximately 1 second of video) to eliminate jerky ROI movements.</para>
+      </section>
+    </section>
+  </content>
+</document>

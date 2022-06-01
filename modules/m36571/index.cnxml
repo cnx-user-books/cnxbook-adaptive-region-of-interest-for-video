@@ -1,0 +1,27 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>LabVIEW VI</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36571</md:content-id>
+  <md:title>LabVIEW VI</md:title>
+  <md:abstract/>
+  <md:uuid>0ca2e377-c186-4ed2-be57-cce96b2695af</md:uuid>
+</metadata>
+
+<content>
+    <para id="id1166014900790">The adaptive ROI system developed above was implemented using LabVIEW 2009, </para>
+    <para id="id1166032673720">from National Instruments. You can download the file here, but in order to run </para>
+    <para id="id1166015242575">the system you will need the Vision and MathScript modules for LabVIEW, as well </para>
+    <para id="id1166015251581">as a widescreen .avi to process.</para>
+    <para id="id1166014973313">You will also need plenty of storage space, as the .avi that the system saves is </para>
+    <para id="id1166027037796">quite large -- you can modify the VI to compress the video if you are familiar </para>
+    <para id="id3361715">with LabVIEW.</para>
+    <para id="id1166015249783">Alternatively, the motion, edge, and focus detection algorithms were implemented </para>
+    <para id="id1166025243001">in LabVIEW via mathscript. They are included in an m-file, so you can take these </para>
+    <para id="id1166015299718">algorithms and use them as you will.
+
+</para><section id="eip-129"><title>Files</title><para id="eip-77">
+<link resource="Mathscript function.m"> download mathscript</link>
+<link resource="Adaptive ROI system.vi"> download LabVIEW VI</link>
+</para></section>
+  </content>
+</document>

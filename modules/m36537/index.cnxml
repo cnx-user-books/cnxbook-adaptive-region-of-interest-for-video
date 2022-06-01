@@ -1,0 +1,28 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Applications, Limitations, and Future Work</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36537</md:content-id>
+  <md:title>Applications, Limitations, and Future Work</md:title>
+  <md:abstract/>
+  <md:uuid>22d968e7-8c93-429e-a1b2-2af776a2889a</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1167055120107">
+      <title>Applications</title>
+      <para id="id1167047489369">An adaptive ROI system such as this could be used for several things. First and foremost, it could be used in the television industry to quickly and inexpensively modify widescreen movies for fullscreen broadcasting. This would eliminate the problems associated with center-cut cropping and it wouldn’t require someone to spend the time to manually pan-and-scan the fullscreen conversion.</para>
+      <para id="id1167069445521">If it could be made to run fast enough, it could be implemented in DVD players and computer-based video players (such as VLC and Windows Media Player) so that the user could determine whether they would like to watch the widescreen or the fullscreen version of their movie, depending on their monitor.</para>
+      <para id="id1167080968316">This system could also have applications in any kind of surveillance or monitoring system, as it could save on data storage by recording the regions of interest.</para>
+    </section>
+    <section id="id8022616">
+      <title>Limitations</title>
+      <para id="id1167073634874">There are a number of problems with this system that prevent it from immediate implementation. First and foremost, a better filtering system is needed to smooth out the movements of the ROI, because at times it is quite shaky despite the smoothing filter already being used.</para>
+      <para id="id1167053035752">Secondly, the system should be improved to recognize scene and shot changes and reset the ROI to center at these changes, so that the filtering from the ROI of the previous shot does not affect the ROI of the beginning of the current shot.</para>
+      <para id="id1167076290962">And finally, there are a lot of ways that the incorporation of the motion, edge, and focus detection results could be optimized. Right now they are simply being averaged, but it is highly likely that there is an optimum weighting of the three elements that would make for smoother, more eye-pleasing ROI determinations.</para>
+    </section>
+    <section id="id1167066634307">
+      <title>Future work</title>
+      <para id="id4652386">In addition to correcting the limitations of the system, there are other things that could be done. For instance, motion detection could be implemented on the detected edges, thus identifying moving edges. General optimization and improvement of all three of the detection methods could be performed, and better ways of separating foreground interest from backround interest could be implemented. And finally, adaptive seam carving and image restructuring could be performed to try to re-size the widescreen down to a fullscreen movie without cropping out info from just the sides.</para>
+    </section>
+  </content>
+</document>

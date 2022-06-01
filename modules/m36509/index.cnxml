@@ -1,0 +1,264 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Edge Detection</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36509</md:content-id>
+  <md:title>Edge Detection</md:title>
+  <md:abstract/>
+  <md:uuid>be2db700-382c-47f7-963a-e08eaaac7202</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1165955978776">
+      <title>Edge Detection via 2D Convolution</title>
+      <para id="id1165955347638">Edges in an image are regions of sharp change, often at the boundaries between objects. One way to quantitatively find edges in an image is to analyze the pixel values of an image and examine the gradient of the pixel values matrix. Edges are identified as maxima in the gradient of an image. By using 2-Dimensional convolution and the pixel value matrix for each frame from a movie, the gradient can be calculated and used to find the edges.</para>
+      <section id="id2257817">
+        <title>2D Convolution</title>
+        <para id="id1165952756218">For our adaptive ROI system, the pixel value matrix was convolved with two different matrices (h<sub>1</sub> and h<sub>2</sub>) using the following formula:</para>
+        <equation id="id7534878">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo stretchy="false">∇</m:mo>
+                      <m:mrow>
+                        <m:mi>x</m:mi>
+                        <m:mo stretchy="false">=</m:mo>
+                        <m:mrow>
+                          <m:munderover>
+                            <m:mo stretchy="false">∑</m:mo>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mrow>
+                                  <m:mi>i</m:mi>
+                                  <m:mo stretchy="false">=</m:mo>
+                                  <m:mn>0</m:mn>
+                                </m:mrow>
+                              </m:mrow>
+                            </m:mstyle>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi fontstyle="italic">k1</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:munderover>
+                          <m:mrow>
+                            <m:munderover>
+                              <m:mo stretchy="false">∑</m:mo>
+                              <m:mstyle fontsize="8pt">
+                                <m:mrow>
+                                  <m:mrow>
+                                    <m:mi>j</m:mi>
+                                    <m:mo stretchy="false">=</m:mo>
+                                    <m:mn>0</m:mn>
+                                  </m:mrow>
+                                </m:mrow>
+                              </m:mstyle>
+                              <m:mstyle fontsize="8pt">
+                                <m:mrow>
+                                  <m:mi fontstyle="italic">k2</m:mi>
+                                </m:mrow>
+                              </m:mstyle>
+                            </m:munderover>
+                            <m:mrow>
+                              <m:mi>x</m:mi>
+                              <m:mo stretchy="false">(</m:mo>
+                              <m:mi>i</m:mi>
+                              <m:mi>,</m:mi>
+                              <m:mi>j</m:mi>
+                              <m:mo stretchy="false">)</m:mo>
+                              <m:mi>h</m:mi>
+                              <m:mo stretchy="false">(</m:mo>
+                              <m:mrow>
+                                <m:mi>m</m:mi>
+                                <m:mo stretchy="false">−</m:mo>
+                                <m:mi>i</m:mi>
+                              </m:mrow>
+                              <m:mi>,</m:mi>
+                              <m:mrow>
+                                <m:mi>n</m:mi>
+                                <m:mo stretchy="false">−</m:mo>
+                                <m:mi>j</m:mi>
+                              </m:mrow>
+                              <m:mo stretchy="false">)</m:mo>
+                            </m:mrow>
+                          </m:mrow>
+                        </m:mrow>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{ nabla x= Sum cSub { size 8{i=0} }  cSup { size 8{k1} }  { Sum cSub { size 8{j=0} }  cSup { size 8{k2} }  {x \( i,j \) h \( m - i,n - j \) } } } {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        <para id="id1165958383747">Where:</para>
+        <equation id="id1165955526756">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mo stretchy="false">∇</m:mo>
+                      <m:mrow>
+                        <m:mi>x</m:mi>
+                        <m:mo stretchy="false">=</m:mo>
+                        <m:mi/>
+                      </m:mrow>
+                      <m:mstyle fontstyle="italic">
+                        <m:mrow>
+                          <m:mtext>gradient</m:mtext>
+                        </m:mrow>
+                      </m:mstyle>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{ nabla x=` ital "gradient"} {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        <equation id="id1165955908227">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mrow>
+                        <m:mi>x</m:mi>
+                        <m:mo stretchy="false">=</m:mo>
+                        <m:mi/>
+                      </m:mrow>
+                      <m:mstyle fontstyle="italic">
+                        <m:mrow>
+                          <m:mtext>image</m:mtext>
+                        </m:mrow>
+                      </m:mstyle>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{x=` ital "image"} {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        <para id="id1165958450004"><m:math xmlns:m="http://www.w3.org/1998/Math/MathML"><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>h</m:mi><m:mn>1</m:mn></m:msub><m:mo stretchy="false">=</m:mo><m:mfenced open="[" close="]"><m:mtable><m:mtr><m:mtd><m:mrow><m:mrow><m:mo stretchy="false">−</m:mo><m:mn>1</m:mn></m:mrow><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>1</m:mn><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mrow><m:mo stretchy="false">−</m:mo><m:mn>2</m:mn></m:mrow><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>2</m:mn><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mrow><m:mo stretchy="false">−</m:mo><m:mn>1</m:mn></m:mrow><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>1</m:mn><m:mrow/></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{h_1= left [ matrix {
+ - 1 {} # 0 {} # 1 {} ##
+ - 2 {} # 0 {} # 2 {} ##
+ - 1 {} # 0 {} # 1{}
+}  right ]} {}</m:annotation></m:semantics></m:math> and 
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML"><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>h</m:mi><m:mn>2</m:mn></m:msub><m:mo stretchy="false">=</m:mo><m:mfenced open="[" close="]"><m:mtable><m:mtr><m:mtd><m:mrow><m:mn>1</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>2</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>1</m:mn><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mrow><m:mo stretchy="false">−</m:mo><m:mn>1</m:mn></m:mrow><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mrow><m:mo stretchy="false">−</m:mo><m:mn>2</m:mn></m:mrow><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mrow><m:mo stretchy="false">−</m:mo><m:mn>1</m:mn></m:mrow><m:mrow/></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{h_2= left [ matrix {
+1 {} # 2 {} # 1 {} ##
+0 {} # 0 {} # 0 {} ##
+ - 1 {} #  - 2 {} #  - 1{}
+}  right ]} {}</m:annotation></m:semantics></m:math></para>
+        <para id="id1165955997019">The result of convolution with h<sub>1</sub> gives the horizontal gradient of the frame while convolution with h<sub>2</sub> gives the vertical gradient. These are then combined to find the magnitude of the gradient at all points in the frame.</para>
+        <equation id="id1165954437211">
+          <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+            <m:semantics>
+              <m:mrow>
+                <m:mstyle fontsize="12pt">
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mrow>
+                        <m:mo stretchy="false">∣</m:mo>
+                        <m:mrow>
+                          <m:mo stretchy="false">∇</m:mo>
+                          <m:mi>x</m:mi>
+                        </m:mrow>
+                        <m:mo stretchy="false">∣</m:mo>
+                      </m:mrow>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:msqrt>
+                        <m:mrow>
+                          <m:msup>
+                            <m:mstyle fontsize="24pt">
+                              <m:mrow>
+                                <m:mfenced open="(" close=")">
+                                  <m:mrow>
+                                    <m:mo stretchy="false">∇</m:mo>
+                                    <m:msub>
+                                      <m:mi>x</m:mi>
+                                      <m:mstyle fontstyle="italic">
+                                        <m:mrow>
+                                          <m:mtext>HORIZ</m:mtext>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:msub>
+                                  </m:mrow>
+                                </m:mfenced>
+                              </m:mrow>
+                            </m:mstyle>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mn>2</m:mn>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msup>
+                          <m:mo stretchy="false">+</m:mo>
+                          <m:msup>
+                            <m:mstyle fontsize="24pt">
+                              <m:mrow>
+                                <m:mfenced open="(" close=")">
+                                  <m:mrow>
+                                    <m:mo stretchy="false">∇</m:mo>
+                                    <m:msub>
+                                      <m:mi>x</m:mi>
+                                      <m:mstyle fontstyle="italic">
+                                        <m:mrow>
+                                          <m:mtext>VERT</m:mtext>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:msub>
+                                  </m:mrow>
+                                </m:mfenced>
+                              </m:mrow>
+                            </m:mstyle>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mn>2</m:mn>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msup>
+                        </m:mrow>
+                      </m:msqrt>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mstyle>
+                <m:mrow/>
+              </m:mrow>
+              <m:annotation encoding="StarMath 5.0"> size 12{ lline  nabla x rline = sqrt { { size 24{ left ( nabla x_ ital "HORIZ" right )} }  rSup { size 8{2} } + { size 24{ left ( nabla x_ ital "VERT" right )} }  rSup { size 8{2} } } } {}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </equation>
+        <para id="id1165955541174">The gradient magnitudes are then thresholded, and any gradient magnitude greater than the threshold is recognized to be an edge. Thus the result is a matrix of zeros and ones, where a 1 indicates that that pixel is part of an edge, and a 0 indicates it is not part of an edge. For our system, a threshold of 125 gives satisfactory results and recognizes only sharp edges.</para>
+      </section>
+      <section id="id6812194">
+        <title>Illustrative example</title>
+        <para id="id1165954913800">Below you can see a frame from Punch Drunk Love as well as the result from the edge detection method. For illustration purposes, the detected edges are displayed in white. The four vertical white lines are there to show the different regions of the screen that are eventually used to decide which region has the most edges in it.</para>
+        <para id="id1165953198193">
+          <figure id="id1165953563025">
+            <title>Original frame</title>
+            <media id="id1165953563025_media" alt="">
+              <image mime-type="image/png" src="../../media/graphics1-ca39.png" id="id1165953563025__onlineimage" height="335" width="601"/>
+            </media>
+          </figure>
+        </para>
+        <figure id="id1165952893946">
+          <title>Detected edges</title>
+          <media id="id1165952893946_media" alt="">
+            <image mime-type="image/png" src="../../media/graphics2-fbb1.png" id="id1165952893946__onlineimage" height="334" width="598"/>
+          </media>
+          <caption>White indicates an edge. The vertical bars are illustrative of how the frame could be segmented for analysis. Note that the area of interest is far to the left of the frame, not in the middle.</caption>
+        </figure>
+      </section>
+    </section>
+  </content>
+</document>

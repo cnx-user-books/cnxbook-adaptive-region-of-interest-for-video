@@ -1,0 +1,45 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Problems with Cropping</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36557</md:content-id>
+  <md:title>Problems with Cropping</md:title>
+  <md:abstract/>
+  <md:uuid>66b32116-d275-4ee7-990e-adc530c55e35</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1170119693834">
+      <title>Widescreen to Fullscreen Conversion Loses Information</title>
+      <para id="id1170115141309">When cropping a widescreen image down to a fullscreen aspect ratio, information will be lost from the edges of the scene. When performing this cropping, there are generally two approaches that are common in the movie and television industries:</para>
+      <section id="id1170119220050">
+        <title>1) Center Cut</title>
+        <para id="id1170115912742">Using this method, a 4:3 region is defined at the center of the widescreen scene, and the sides are cropped. This results in equal amounts of information being lost from the left and right edges of the scene.</para>
+        <para id="id1170119167038">This would not be a huge problem if everything of interest in the movie took place in the direct center of of the scene. However, as you may notice when watching your favorite flick, oftentimes the <term>Region of Interest (ROI)</term>is skewed towards the left or right of the scene. When this happens, the center cut method will result in important parts of the scene being cropped out. As seen below in a scene from the film Punch Drunk Love (directed by P.T. Anderson and starring Adam Sandler), a simple center cut approach results in the main character’s being partially cropped out while the majority of the preserved scene contains nothing all that interesting.</para>
+        <figure id="id1170115989267">
+          <title>Figure 1: Original, widescreen format scene from Punch Drunk Love</title>
+          <media id="id1170115989267_media" alt="">
+            <image mime-type="image/png" src="../../media/graphics1-d462.png" id="id1170115989267__onlineimage" height="266" width="478"/>
+          </media>
+        </figure>
+        <para id="id1170122351650">
+          <figure id="id1170121833607">
+            <title>Figure 2: Result of center cut cropping</title>
+            <media id="id1170121833607_media" alt="">
+              <image mime-type="image/png" src="../../media/graphics2-dc77.png" id="id1170121833607__onlineimage" height="282" width="380"/>
+            </media>
+            <caption>Note how part of the character’s face and body has been cropped out</caption>
+          </figure>
+        </para>
+      </section>
+      <section id="id1170152488614">
+        <title>2) Pan-and-Scan</title>
+        <para id="id1170124667827">In the pan-and-scan method, an editor goes through the movie and moves around the ROI such that the important elements of each scene are not cropped out. This is a time-intensive and subjective process, and the results of it will vary depending on who determines the ROI. However, this is the preferred method because it ensures that embarrassing results such as in Figure 2 above do not ocurr. </para>
+      </section>
+    </section>
+    <section id="id1170118446211">
+      <title>Better Solution is Needed</title>
+      <para id="id1170121041792">What is needed is an automated, quantitative Pan-and-Scan system that can analyze a movie, determine where the important scene elements are, and adjust the ROI so that these important elements are not cropped out. </para>
+      <para id="id1170119041524">To develop such a system, we first need to know what the “important scene elements” are so that we can find a suitable method of quantifying them. </para>
+    </section>
+  </content>
+</document>

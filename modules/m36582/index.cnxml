@@ -1,0 +1,87 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Adaptive ROI Results</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36582</md:content-id>
+  <md:title>Adaptive ROI Results</md:title>
+  <md:abstract/>
+  <md:uuid>e58faae9-e7d6-4b0a-a1fc-7b8aeca39e4b</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1170096035026">
+      <title>Implementation With a Widescreen Movie</title>
+      <para id="id1170125357761">To evaluate our adaptive ROI system, a scene from the movie “Punch Drunk Love” was analyzed. A straight-cut fullscreen version was generated, and our adaptive ROI system was used to generate a pan-and-scan fullscreen version. The pan-and-scan version was analyzed by tracking the ROI midpoint as a function of frame number.</para>
+      <section id="id1170122916909">
+        <title>ROI Midpoint Tracking</title>
+        <para id="id1170099738757">To illustrate the mobility of the ROI midpoint, the following charts show the deviation of the midpoint from center after processing by motion, edge, and focus detection individually and combined. The first 4 charts show the unfiltered results of processing, while the last chart shows the filtered ROI midpoint using the combined processing.</para>
+        <figure id="id1170125276066">
+          <title>Results of processing: Motion only</title>
+          <media id="id1170125276066_media" alt="">
+            <image mime-type="image/png" src="../../media/Chart 4.png" id="id1170125276066__onlineimage" height="306" width="566"/>
+          </media>
+        </figure>
+        <para id="id1170116576083">
+          <figure id="id1170097502705">
+            <title>Results of processing: Edges only</title>
+            <media id="id1170097502705_media" alt="">
+              <image mime-type="image/png" src="../../media/Chart 9.png" id="id1170097502705__onlineimage" height="300" width="570"/>
+            </media>
+          </figure>
+        </para>
+        <figure id="id1170108764753">
+          <title>Results of processing: Focus only</title>
+          <media id="id1170108764753_media" alt="">
+            <image mime-type="image/png" src="../../media/Chart 6.png" id="id1170108764753__onlineimage" height="300" width="568"/>
+          </media>
+        </figure>
+        <para id="id1170101387524">
+          <figure id="id1170091391149">
+            <title>Results of processing: Combined methods, NO filtering</title>
+            <media id="id1170091391149_media" alt="">
+              <image mime-type="image/png" src="../../media/Chart 10.png" id="id1170091391149__onlineimage" height="300" width="571"/>
+            </media>
+          </figure>
+        </para>
+        <figure id="id1170106554760">
+          <title>Results of processing: Combined methods, WITH filtering</title>
+          <media id="id1170106554760_media" alt="">
+            <image mime-type="image/png" src="../../media/Chart 3.png" id="id1170106554760__onlineimage" height="300" width="571"/>
+          </media>
+        </figure>
+      </section>
+      <section id="id1170086135266">
+        <title>Image Results</title>
+        <para id="id1170089827871">The following images illustrate the functionality of our adaptive ROI system compared to a center-cut fullscreen image. The images are taken from the same scene as was used for the above analysis, in the Frame # 1000 to 2000 range.</para>
+        <para id="id1170093276519">
+          <figure id="id1170123878129">
+            <title>Original widescreen frame</title>
+            <media id="id1170123878129_media" alt="">
+              <image mime-type="image/png" src="../../media/graphics1-d462.png" id="id1170123878129__onlineimage" height="266" width="478"/>
+            </media>
+          </figure>
+        </para>
+        <figure id="id1170103771667">
+          <title>Result of center-cut fullscreen conversion</title>
+          <media id="id1170103771667_media" alt="">
+            <image mime-type="image/png" src="../../media/graphics2-dc77.png" id="id1170103771667__onlineimage" height="282" width="380"/>
+          </media>
+        </figure>
+        <para id="id1170101700652">
+          <figure id="id1170102123548">
+            <title>Result of adaptive ROI fullscreen conversion</title>
+            <media id="id1170102123548_media" alt="">
+              <image mime-type="image/png" src="../../media/graphics3.png" id="id1170102123548__onlineimage" height="283" width="376"/>
+            </media>
+          </figure>
+        </para>
+        <para id="id1170093905436">Video Results</para>
+        <para id="id1170093973118">Here you can download a center-cut fullscreen and an Adaptive ROI fullscreen version of the scene above. The videos “with black bars” show a 16:9 video with black bars over the regions that would be cropped out – the ROI is still 4:3.</para>
+        <para id="id1170107130856">Note that the videos go further in the scene than the charts above. </para>
+        <para id="id7699399"><link resource="Adaptive ROI fullscreen.mp4"> Adaptive ROI fullscreen</link></para>
+        <para id="id1170098228673"><link resource="Adaptive ROI with black bars.mp4"> Adaptive ROI with black bars</link></para>
+        <para id="id1170108782644"><link resource="Center cut fullscreen.mp4"> Center-cut fullscreen</link></para>
+        <para id="id1170097923237"><link resource="Center cut with black bars.mp4"> Center-cut with black bars</link></para>
+      </section>
+    </section>
+  </content>
+</document>

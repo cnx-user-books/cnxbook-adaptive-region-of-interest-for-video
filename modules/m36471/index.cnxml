@@ -1,0 +1,319 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Focus Detection</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36471</md:content-id>
+  <md:title>Focus Detection</md:title>
+  <md:abstract/>
+  <md:uuid>f758a352-7bc6-4748-aae7-e2cf7d35ac16</md:uuid>
+</metadata>
+
+<content>
+    <para id="id1168157265148">Focus detection</para>
+    <para id="id1168142676485">Focus Detection:</para>
+    <para id="id1168141265122"> One important aspect of images is focus. While qualitatively deciding whether an image is in focus or not is relatively easy, quantitatively it can be quite difficult. One way to detect whether or not an image is in focus is by examining its power spectrum. </para>
+    <section id="id1168143532064">
+      <title>Power Spectrum and Focus</title>
+      <para id="id1826156">It is generally assumed that natural images are made up of fractals, and it can be shown that the <term>power spectrum</term> (power as a function of frequency) of a natural image should fall off as</para>
+      <equation id="id1168141552559">
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:semantics>
+            <m:mrow>
+              <m:mstyle fontsize="12pt">
+                <m:mrow>
+                  <m:mfrac>
+                    <m:mn>1</m:mn>
+                    <m:msup>
+                      <m:mi>f</m:mi>
+                      <m:mstyle fontsize="8pt">
+                        <m:mrow>
+                          <m:mn>2</m:mn>
+                        </m:mrow>
+                      </m:mstyle>
+                    </m:msup>
+                  </m:mfrac>
+                </m:mrow>
+              </m:mstyle>
+              <m:mrow/>
+            </m:mrow>
+            <m:annotation encoding="StarMath 5.0"> size 12{ {  {1}  over  {f rSup { size 8{2} } } } } {}</m:annotation>
+          </m:semantics>
+        </m:math>
+      </equation>
+      <para id="id1904046">where <emphasis effect="italics">f</emphasis> is the frequency. </para>
+      <para id="id9020799">As an image goes out of focus, it becomes blurred. That is to say that the edges are less sharp. If an image contains less sharp edges, its power spectrum will contain less high-frequency power. The power spectrum of an out-of-focus image should, therefore, fall off faster than an in-focus image. </para>
+      <para id="id1168140026973">So by calculating the power spectrum and examining its linear regression on a loglog plot (log[power] vs log[frequency]), we can get an indicator of focus.</para>
+    </section>
+    <section id="id1168149233883">
+      <title>Calculating the Power Spectrum</title>
+      <para id="id1168147971239">The power specturm is simply the square of the two dimensional Fourier transform:</para>
+      <equation id="id1168143424273">
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:semantics>
+            <m:mrow>
+              <m:mstyle fontsize="12pt">
+                <m:mrow>
+                  <m:mrow>
+                    <m:mi>P</m:mi>
+                    <m:mrow>
+                      <m:mfenced open="(" close=")">
+                        <m:mrow>
+                          <m:msub>
+                            <m:mi>k</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>x</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                          <m:mi>,</m:mi>
+                          <m:msub>
+                            <m:mi>k</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>y</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                        </m:mrow>
+                      </m:mfenced>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:mrow>
+                        <m:mo stretchy="false">∣</m:mo>
+                        <m:mrow>
+                          <m:mi>F</m:mi>
+                          <m:msup>
+                            <m:mfenced open="(" close=")">
+                              <m:mrow>
+                                <m:msub>
+                                  <m:mi>k</m:mi>
+                                  <m:mstyle fontsize="8pt">
+                                    <m:mrow>
+                                      <m:mi>x</m:mi>
+                                    </m:mrow>
+                                  </m:mstyle>
+                                </m:msub>
+                                <m:mi>,</m:mi>
+                                <m:msub>
+                                  <m:mi>k</m:mi>
+                                  <m:mstyle fontsize="8pt">
+                                    <m:mrow>
+                                      <m:mi>y</m:mi>
+                                    </m:mrow>
+                                  </m:mstyle>
+                                </m:msub>
+                              </m:mrow>
+                            </m:mfenced>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mn>2</m:mn>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msup>
+                        </m:mrow>
+                        <m:mo stretchy="false">∣</m:mo>
+                      </m:mrow>
+                    </m:mrow>
+                  </m:mrow>
+                </m:mrow>
+              </m:mstyle>
+              <m:mrow/>
+            </m:mrow>
+            <m:annotation encoding="StarMath 5.0"> size 12{P left (k rSub { size 8{x} } ,k rSub { size 8{y} }  right )= lline F left (k rSub { size 8{x} } ,k rSub { size 8{y} }  right ) rSup { size 8{2} }  rline } {}</m:annotation>
+          </m:semantics>
+        </m:math>
+      </equation>
+      <para id="id1168147630883">where the two dimensional Fourier transform is given by: </para>
+      <equation id="id1168158645039">
+        <m:math xmlns:m="http://www.w3.org/1998/Math/MathML">
+          <m:semantics>
+            <m:mrow>
+              <m:mstyle fontsize="12pt">
+                <m:mrow>
+                  <m:mrow>
+                    <m:mi>F</m:mi>
+                    <m:mrow>
+                      <m:mfenced open="(" close=")">
+                        <m:mrow>
+                          <m:msub>
+                            <m:mi>k</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>x</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                          <m:mi>,</m:mi>
+                          <m:msub>
+                            <m:mi>k</m:mi>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mi>y</m:mi>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:msub>
+                        </m:mrow>
+                      </m:mfenced>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:mrow>
+                        <m:munderover>
+                          <m:mo stretchy="false">∑</m:mo>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mrow>
+                                <m:mi>x</m:mi>
+                                <m:mo stretchy="false">=</m:mo>
+                                <m:mn>0</m:mn>
+                              </m:mrow>
+                            </m:mrow>
+                          </m:mstyle>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mrow>
+                                <m:mi>N</m:mi>
+                                <m:mo stretchy="false">−</m:mo>
+                                <m:mn>1</m:mn>
+                              </m:mrow>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:munderover>
+                        <m:mrow>
+                          <m:munderover>
+                            <m:mo stretchy="false">∑</m:mo>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mrow>
+                                  <m:mi>y</m:mi>
+                                  <m:mo stretchy="false">=</m:mo>
+                                  <m:mn>0</m:mn>
+                                </m:mrow>
+                              </m:mrow>
+                            </m:mstyle>
+                            <m:mstyle fontsize="8pt">
+                              <m:mrow>
+                                <m:mrow>
+                                  <m:mi>N</m:mi>
+                                  <m:mo stretchy="false">−</m:mo>
+                                  <m:mn>1</m:mn>
+                                </m:mrow>
+                              </m:mrow>
+                            </m:mstyle>
+                          </m:munderover>
+                          <m:mrow>
+                            <m:mi>f</m:mi>
+                            <m:msup>
+                              <m:mfenced open="(" close=")">
+                                <m:mrow>
+                                  <m:msub>
+                                    <m:mi>k</m:mi>
+                                    <m:mstyle fontsize="8pt">
+                                      <m:mrow>
+                                        <m:mi>x</m:mi>
+                                      </m:mrow>
+                                    </m:mstyle>
+                                  </m:msub>
+                                  <m:mi>,</m:mi>
+                                  <m:msub>
+                                    <m:mi>k</m:mi>
+                                    <m:mstyle fontsize="8pt">
+                                      <m:mrow>
+                                        <m:mi>y</m:mi>
+                                      </m:mrow>
+                                    </m:mstyle>
+                                  </m:msub>
+                                </m:mrow>
+                              </m:mfenced>
+                              <m:mstyle fontsize="8pt">
+                                <m:mrow>
+                                  <m:mn>2</m:mn>
+                                </m:mrow>
+                              </m:mstyle>
+                            </m:msup>
+                          </m:mrow>
+                        </m:mrow>
+                      </m:mrow>
+                    </m:mrow>
+                    <m:msup>
+                      <m:mi>e</m:mi>
+                      <m:mstyle fontsize="8pt">
+                        <m:mrow>
+                          <m:mrow>
+                            <m:mfrac>
+                              <m:mrow>
+                                <m:mo stretchy="false">−</m:mo>
+                                <m:mi fontstyle="italic">j2π</m:mi>
+                              </m:mrow>
+                              <m:mi>N</m:mi>
+                            </m:mfrac>
+                            <m:mfenced open="(" close=")">
+                              <m:mrow>
+                                <m:mstyle fontstyle="italic">
+                                  <m:mrow>
+                                    <m:msub>
+                                      <m:mtext>xk</m:mtext>
+                                      <m:mstyle fontsize="6pt">
+                                        <m:mrow>
+                                          <m:mi>x</m:mi>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:msub>
+                                  </m:mrow>
+                                </m:mstyle>
+                                <m:mo stretchy="false">+</m:mo>
+                                <m:mstyle fontstyle="italic">
+                                  <m:mrow>
+                                    <m:msub>
+                                      <m:mtext>yk</m:mtext>
+                                      <m:mstyle fontsize="6pt">
+                                        <m:mrow>
+                                          <m:mi>y</m:mi>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:msub>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:mrow>
+                            </m:mfenced>
+                          </m:mrow>
+                        </m:mrow>
+                      </m:mstyle>
+                    </m:msup>
+                  </m:mrow>
+                </m:mrow>
+              </m:mstyle>
+              <m:mrow/>
+            </m:mrow>
+            <m:annotation encoding="StarMath 5.0"> size 12{F left (k rSub { size 8{x} } ,k rSub { size 8{y} }  right )= Sum cSub { size 8{x=0} }  cSup { size 8{N - 1} }  { Sum cSub { size 8{y=0} }  cSup { size 8{N - 1} }  {f left (k rSub { size 8{x} } ,k rSub { size 8{y} }  right ) rSup { size 8{2} } } } e rSup { size 8{ {  { - j2π}  over  {N} }  left ( ital "xk" rSub { size 6{x} } + ital "yk" rSub { size 6{y} }  right )} } } {}</m:annotation>
+          </m:semantics>
+        </m:math>
+      </equation>
+      <para id="id1168143533704">Note that denotes an individual image pixel. You may have noticed that the above equations define a square image. While a non-symmetric two dimensional Fourier transform exists, using square images eases the process.</para>
+      <para id="id1168143206623"> Because whether or not an image is in focus depends on the magnitude of power as a function of frequency, once the two dimensional power spectrum is computed as above, we <emphasis>radially average</emphasis> the spectrum. That is, the average of the values which lie on a circle a distance R from the origin is taken. Because frequency increases linearly in all directions from the origin, radially averaging the power spectrum gives the <emphasis>average power at one frequency</emphasis>, effectively collapsing the two dimensional spectrum to one dimension. It should be noted that 
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML"><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>F</m:mi><m:mfenced open="(" close=")"><m:mrow><m:msub><m:mi>k</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>x</m:mi></m:mrow></m:mstyle></m:msub><m:mi>,</m:mi><m:msub><m:mi>k</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>y</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mfenced></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{F left (k rSub { size 8{x} } ,k rSub { size 8{y} }  right )} {}</m:annotation></m:semantics></m:math> has been centered around baseband, meaning the frequency of the rotionally averaged power spectrum extends from 0 to N/2 -1. </para>
+      <para id="id1168142565704">The power spectrum’s falloff on a loglog plot can now be examined to determine focus.</para>
+    </section>
+    <section id="id1168148094250">
+      <title>Illustrative Example of Focus Analysis on Entire Image</title>
+      <para id="id5042616">The following images show the results of a linear regression of the power spectrum on a loglog plot for an in-focus image and an out-of-focus image.</para>
+      <figure id="id1168152144870">
+        <title>Focus analysis of an in-focus image</title>
+        <media id="id1168152144870_media" alt="">
+          <image mime-type="image/png" src="../../media/graphics1-21ba.png" id="id1168152144870__onlineimage" height="265" width="600"/>
+        </media>
+      </figure>
+      <figure id="id1168147933794">
+        <title>Focus analysis of an out-of-focus image</title>
+        <media id="id1168147933794_media" alt="">
+          <image mime-type="image/png" src="../../media/graphics2-b3e1.png" id="id1168147933794__onlineimage" height="284" width="599"/>
+        </media>
+      </figure>
+      <para id="id2115366">As expected, the out-of-focus image yielded a linear regression with a slope of -3.3, while the in-focus image yielded a linear regression with a slope of -2.3, indicating that the out-of-focus image has fewer high frequency components.</para>
+    </section>
+    <section id="id4698968">
+      <title>Determining Regions of Focus</title>
+      <para id="id1168148258811">Because frequency and power should be related exponentially as stated before, the loglog plot should display a linear relationship. Taking the linear regression of the loglog plot leads to an estimate of the frequency fall off. For example, if the linear regression where to return a slope of -2, we know that the power spectrum falls off as 
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML"><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mn>1</m:mn><m:msup><m:mi>f</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {1}  over  {f rSup { size 8{2} } } } } {}</m:annotation></m:semantics></m:math>.</para>
+      <para id="id1168143127263">The same principles used to determine whether or not an <emphasis>image </emphasis>is in focus can be used to determine what <emphasis>region</emphasis> of an image is in focus. Because cameras can only focus on one spatial plane, in a single picture certain objects will be more in focus than others. To determine which region of an image is in focus, one simply has to divide the image into separate spatial region and then use the methods described above on each region. The region whose power spectrum conforms most closely to the 
+<m:math xmlns:m="http://www.w3.org/1998/Math/MathML"><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mn>1</m:mn><m:msup><m:mi>f</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {1}  over  {f rSup { size 8{2} } } } } {}</m:annotation></m:semantics></m:math> fall off can be considered the center of focus in the image.</para>
+    </section>
+  </content>
+</document>

@@ -1,0 +1,32 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>What is Important in a Movie Scene?</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36549</md:content-id>
+  <md:title>What is Important in a Movie Scene?</md:title>
+  <md:abstract/>
+  <md:uuid>cd339810-c164-4191-bd2b-c880205246a3</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1170253954411">
+      <title>Motion, Edges, and Focus Determine ROI</title>
+      <para id="id1170245451806">Three major indicators of what is important in a movie scene are the amounts of motion, edges, and focus in different regions of the screen.</para>
+      <section id="id1170240666002">
+        <title>Motion</title>
+        <para id="id1170242227822">Motion is perhaps the best indicator of where the “action” is taking place in a scene. In an uncropped scene, objects that are in motion tend to draw the eyes of the audience. This makes motion detection a good scene element to quantify for our adaptive ROI system.</para>
+      </section>
+      <section id="id1170240483972">
+        <title>Edges</title>
+        <para id="id1170252013942">Sharp differences in an image tend to indicate the boundaries of separate objects in a scene. Generally, objects that are in focus tend to have more clearly defined edges while objects that are not in focus will have less defined edges. Sharp edges draw the eyes of the audience in a scene, as they are the delineators of separate objects. Thus, by detecting edges in a scene, we can begin to identify which objects stand out from their surroundings and should be included in the ROI.</para>
+      </section>
+      <section id="id1170274666968">
+        <title>Focus</title>
+        <para id="id1170242080338">What is in focus and what is out of focus in a scene could be said to be the most important way in which a movie director will tell the audience what is important and what they should be looking at. Generally speaking, areas of the scene that are in focus are the areas in which the important action in a scene will be taking place, so detecting the relative focus in different regions of the scene will be an important factor in determining the ROI.</para>
+      </section>
+    </section>
+    <section id="id1170246722539">
+      <title>Quantifying the Scene Elements</title>
+      <para id="id1170249893243">Now that we have decided on which scene elements we want to include in the ROI, we must develop systems for calculating the “amount” and location of each element in a scene.</para>
+    </section>
+  </content>
+</document>

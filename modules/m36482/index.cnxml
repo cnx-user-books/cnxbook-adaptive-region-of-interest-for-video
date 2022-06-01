@@ -1,0 +1,29 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Intro: Widescreen vs Fullscreen</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36482</md:content-id>
+  <md:title>Intro: Widescreen vs Fullscreen</md:title>
+  <md:abstract/>
+  <md:uuid>16ee2ea6-d3f0-4099-ad67-9a7c35ea5cb5</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1170107822091">
+      <title>Widescreen vs Fullscreen</title>
+      <para id="id1170095733380">Many movies today are filmed with an aspect ratio of 16:9 (width:length) to allow for wider shots. Movies filmed in this format are generally referred to as <term>widescreen</term>. However, most older televisions have an aspect ratio of 4:3, and most television programming is presented in the 4:3 format. </para>
+      <para id="id1170095346839">This discontinuity in aspect ratio presents a problem to TV programming stations as well as the movie industry when trying to display movies on standard TVs. The two most popular solutions are:</para>
+      <section id="id1170094734775">
+        <title>1) Letterbox</title>
+        <para id="id1170108800948">Include the entire 16:9 frame inside the 4:3 frame, resulting in black bars at the top and bottom of the screen. This method preserves all of the information from the original frame, but results in a large portion of the 4:3 display being used to display no information.</para>
+      </section>
+      <section id="id1170100461705">
+        <title>2) Crop </title>
+        <para id="id1170106911259">Crop the sides of the 16:9 frame to generate a 4:3 frame that completely fills the standard TV frame. This method results in a <term>fullscreen</term> movie that completely fills the 4:3 display.</para>
+        <para id="id1170097222152">However, this method loses a substantial portion of the information from the original movie frame, potentially eliminating important scene elements.</para>
+        <para id="id1170102978738">
+          <emphasis>The following modules will focus on developing an improved version of solution number 2 by computationally finding the region of interest in the scene and preserving this information when cropping. </emphasis>
+        </para>
+      </section>
+    </section>
+  </content>
+</document>

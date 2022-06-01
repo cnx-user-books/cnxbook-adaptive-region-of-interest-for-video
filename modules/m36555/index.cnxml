@@ -1,0 +1,47 @@
+<document xmlns="http://cnx.rice.edu/cnxml">
+  <title>Motion Detection via Frame Subtraction</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m36555</md:content-id>
+  <md:title>Motion Detection via Frame Subtraction</md:title>
+  <md:abstract/>
+  <md:uuid>c6a33b05-834e-4b77-ae57-c270fca85163</md:uuid>
+</metadata>
+
+<content>
+    <section id="id1644662">
+      <title>Change in Pixel Values Indicates Motion</title>
+      <para id="id1166291455174">A simple method of subtracting one movie frame from another will provide information about which parts of the scene have changed (generally due to motion). This method was performed on each frame of the movie, with consecutive frames being subtracted from each other.</para>
+      <section id="id1166315557395">
+        <title>Frame Subtraction</title>
+        <para id="id1166284364685">First, the scene is converted to an array of pixel values. These pixel values are the averaged <term>Red, Green, and Blue (RGB)</term> values for each pixel. The pixel values of the previous frame are then subtracted from the current frame’s pixel values, and the absolute value of the values is taken. The result is an array of values that represent how much each pixel has changed between the two frames, with higher values representing more change. The amount of change in a region of pixels can be interpreted as the amount of motion that is taking place in that region. These data can then be used to determine where in the scene the most motion is taking place.</para>
+      </section>
+      <section id="id1166295185294">
+        <title>Illustrative Example</title>
+        <para id="id1166291968978">The images below show the results of subtracting two frames from Punch Drunk Love. Note that these are <emphasis>NOT</emphasis> consecutive frames, as the changes between consecutive frames can be very small. The frames presented below were chosen to clearly illustrate the results of frame subtraction. In the “difference” frame, higher values (more change) are represented by white.</para>
+        <para id="id1166288546671">
+          <figure id="id1166307225838">
+            <title>Figure 1: The current frame</title>
+            <media id="id1166307225838_media" alt="">
+              <image mime-type="image/png" src="../../media/graphics1-ab50.png" id="id1166307225838__onlineimage" height="334" width="602"/>
+            </media>
+          </figure>
+        </para>
+        <para id="id1166297905361">
+          <figure id="id1166283331952">
+            <title>Figure 1: The previous frame (not consecutive frames)</title>
+            <media id="id1166283331952_media" alt="">
+              <image mime-type="image/png" src="../../media/graphics2-18fc.png" id="id1166283331952__onlineimage" height="335" width="601"/>
+            </media>
+          </figure>
+        </para>
+        <figure id="id1166282713368">
+          <title>Figure 3: The “difference” frame</title>
+          <media id="id1166282713368_media" alt="">
+            <image mime-type="image/jpg" src="../../media/graphics3.jpg" id="id1166282713368__onlineimage" height="334" width="601"/>
+          </media>
+          <caption>White regions indicate more change in pixel values. Very little change has occurred in much of the scene. Only the movement of the main character has resulted in a large amount of change in pixel values. Note that in this scene, the motion is taking place not in the center of the frame, but slightly offset to the left.</caption>
+        </figure>
+      </section>
+    </section>
+  </content>
+</document>
